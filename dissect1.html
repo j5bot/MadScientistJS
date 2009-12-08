@@ -4,29 +4,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Dissect</title>
     
-	<link rel="stylesheet" type="text/css" href="css/madscience.css" />
-	<style type="text/css">
-		.dissect {
-			background-position: top left;
-			background-image: url("img/dissection-flickr-linek.1600.jpg");
-		}
-		.slide2 {
-			background-image: url("img/skull.1600.jpg");
-			background-position: bottom right;
-		}
-		.slide3 {
-			background-image: url("img/stairs-flickr-hinkelstone.1600.jpg");
-		}		
-		.slide4 {
-			background-image: url("img/stairs2-flickr-hinkelstone.1600.jpg");
-		}		
-	</style>
-	    
+    <link rel="stylesheet" type="text/css" href="css/madscience.css" />
+    <style type="text/css">
+        .dissect {
+            background-position: top left;
+            background-image: url("img/dissection-flickr-linek.1600.jpg");
+        }
+        .slide2 {
+            background-image: url("img/skull.1600.jpg");
+            background-position: bottom right;
+        }
+        .slide3 {
+            background-image: url("img/stairs-flickr-hinkelstone.1600.jpg");
+        }       
+        .slide4 {
+            background-image: url("img/stairs2-flickr-hinkelstone.1600.jpg");
+        }       
+    </style>
+        
     <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
 </head>
 <body class="dissect black">
     <div class="navigation heading">
-		<h1>Javascript for the Mad Scientist:</h1>
+        <h1>Javascript for the Mad Scientist:</h1>
         <ul>
             <li><a href="dissect1.html">Dissect I: Scope</a></li>
             <li><a href="dissect2.html">Dissect II: Methods</a></li>
@@ -34,7 +34,7 @@
     </div>
     <div class="section" id="content">
         <div class="section slide clear dissect black">
-	        <h1>Dissection: </h1>
+            <h1>Dissection: </h1>
             <p>jQuery itself is written "the jQuery way".</p>
             <p>But what does that mean?  What can we learn by looking at the jQuery source code or the source code for a "typical" plugin?</p>
         </div>
@@ -71,12 +71,12 @@ alert(foo); // undefined
             <code class="example">var foo = "foo";
 alert(foo);
 (function () {
-	var foo = "bar";
-	alert(foo);
+    var foo = "bar";
+    alert(foo);
 })();
 alert(foo);
 </code>
-			<p>The anonymous function pattern by itself, used to explicitly scope variables and functions, does not create a closure.</p>
+            <p>The anonymous function pattern by itself, used to explicitly scope variables and functions, does not create a closure.</p>
         </div>
         <div class="section slide">
             <h3>Closures</h3>
@@ -103,19 +103,19 @@ alert(foo);
     jQuery("code:visible").css({"background-color": "#ccc"});
 })();
             </code>
-			<p>The anonymous function attached to a <code class="definition">click</code> causes the surrounding anonymous function to become a closure, and its scope to be maintained.</p>
+            <p>The anonymous function attached to a <code class="definition">click</code> causes the surrounding anonymous function to become a closure, and its scope to be maintained.</p>
         </div>
-		<div class="section slide">
-			<p>The more you program in javascript, the more you will realize the importance of the scope chain.  Practice following what "this" refers to as you move throughout the code for a jQuery method.</p>
-			<p>Look at the other variables available in the local scope and in each layer of the scope chain.</p>
-			<p><a href="dissect2.html" class="next">... CONTINUE</a></p>
-		</div>
-		
+        <div class="section slide">
+            <p>The more you program in javascript, the more you will realize the importance of the scope chain.  Practice following what "this" refers to as you move throughout the code for a jQuery method.</p>
+            <p>Look at the other variables available in the local scope and in each layer of the scope chain.</p>
+            <p><a href="dissect2.html" class="next">... CONTINUE</a></p>
+        </div>
+        
     </div>
 
     <script type="text/javascript" src="js/jquery.madscience.js"></script>
-	<script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
-	<script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
     <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {

@@ -4,29 +4,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Dissect</title>
     <link rel="stylesheet" type="text/css" href="css/madscience.css" />
-	<style type="text/css">
-		.dissect {
-			background-image: url(img/charles-bell.1500.jpg);
-			background-position: bottom right;
-		}
-		.slide2 {
-			background-image: url(img/sketch-flickr-sarah-g.1500.jpg);
-			background-position: top left;
-		}
-		.slide3 {
-			background-image: url("img/kit-flickr-mightyohm.1500.jpg");
-		}
-		.slide4 {
-			background-image: url("img/fractals-flickr-kevindooley.1500.jpg");
-			background-position: bottom right;
-		}
-	</style>
+    <style type="text/css">
+        .dissect {
+            background-image: url(img/charles-bell.1500.jpg);
+            background-position: bottom right;
+        }
+        .slide2 {
+            background-image: url(img/sketch-flickr-sarah-g.1500.jpg);
+            background-position: top left;
+        }
+        .slide3 {
+            background-image: url("img/kit-flickr-mightyohm.1500.jpg");
+        }
+        .slide4 {
+            background-image: url("img/fractals-flickr-kevindooley.1500.jpg");
+            background-position: bottom right;
+        }
+    </style>
     
     <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
 </head>
 <body class="dissect">
     <div class="navigation heading">
-		<h1>Javascript for the Mad Scientist:</h1>
+        <h1>Javascript for the Mad Scientist:</h1>
         <ul>
             <li><a href="dissect1.html">Dissect I: Scope</a></li>
             <li><a href="dissect2.html">Dissect II: Methods</a></li>
@@ -34,35 +34,35 @@
     </div>
     <div class="section" id="content">
         <div class="section slide clear dissect">
-			<h2>"Public" and "Private" Methods</h2>
-			<p>With the proper use of <code class="definition">function</code> scope, we can create "inner" or "private" methods.</p>
-			<code class="example">
+            <h2>"Public" and "Private" Methods</h2>
+            <p>With the proper use of <code class="definition">function</code> scope, we can create "inner" or "private" methods.</p>
+            <code class="example">
 function bar () {
-	function foo () {
-		alert("foo");
-	}
+    function foo () {
+        alert("foo");
+    }
 }
 
 alert(typeof foo); // undefined
 alert(typeof bar.foo); // undefined
-			</code>
-		</div>
-		<div class="section slide clear slide2 whiter">
-			<h2>"Public" and "Private" Methods</h2>
-			<p>We can also create public methods (in quite a few ways)</p>
-			<code class="example">
+            </code>
+        </div>
+        <div class="section slide clear slide2 whiter">
+            <h2>"Public" and "Private" Methods</h2>
+            <p>We can also create public methods (in quite a few ways)</p>
+            <code class="example">
 function bar () {
-	this.foo = function () {
-		alert("foo");
-	}; // note that this is an assignment statement, not a declaration, so it ends with a semi-colon
+    this.foo = function () {
+        alert("foo");
+    }; // note that this is an assignment statement, not a declaration, so it ends with a semi-colon
 }
 
 bar.bad = function() {
-	alert("bad!");
+    alert("bad!");
 }; // functions are objects, so you can assign other functions as properties
 
 bar["baz"] = function () {
-	alert("baz!");
+    alert("baz!");
 }; // another way to create an assignment ...
 
 alert("bar.foo is: " + typeof(bar.foo));
@@ -72,14 +72,14 @@ alert("bar.baz is: " + typeof(bar.baz));
 var b = new bar();
 
 alert("b.foo is: " + typeof(b.foo));
-			</code>
-			<p><a href="bones.html" class="next">... CONTINUE</a></p>
-		</div>
+            </code>
+            <p><a href="bones.html" class="next">... CONTINUE</a></p>
+        </div>
     </div>
 
     <script type="text/javascript" src="js/jquery.madscience.js"></script>
-	<script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
-	<script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
     <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
