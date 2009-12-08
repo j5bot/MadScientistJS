@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Dissect</title>
+    <title>Dissect II: Public and Private Methods</title>
     <link rel="stylesheet" type="text/css" href="css/madscience.css" />
     <style type="text/css">
         .dissect {
@@ -30,11 +30,14 @@
         <ul>
             <li><a href="dissect1.html">Dissect I: Scope</a></li>
             <li><a href="dissect2.html">Dissect II: Methods</a></li>
+            <li><a href="bones.html">Skeleton: Prototype &amp; Constructor</a></li>
+            <li><a href="stitches.html">Stitches: Put it Together</a></li>
         </ul>
     </div>
     <div class="section" id="content">
         <div class="section slide clear dissect">
-            <h2>"Public" and "Private" Methods</h2>
+			<h1>Dissection II: Public and Private Methods</a>
+            <h2>"Private" Methods</h2>
             <p>With the proper use of <code class="definition">function</code> scope, we can create "inner" or "private" methods.</p>
             <code class="example">
 function bar () {
@@ -48,28 +51,28 @@ alert(typeof bar.foo); // undefined
             </code>
         </div>
         <div class="section slide clear slide2 whiter">
-            <h2>"Public" and "Private" Methods</h2>
+            <h2>"Public" Methods</h2>
             <p>We can also create public methods (in quite a few ways)</p>
             <code class="example">
 function bar () {
     this.foo = function () {
         alert("foo");
-    }; // note that this is an assignment statement, not a declaration, so it ends with a semi-colon
+    }; // instance member method, as an assignment, it must end with semicolon
 }
 
 bar.bad = function() {
     alert("bad!");
-}; // functions are objects, so you can assign other functions as properties
+}; // "function" member method (available with or without instantiation, similar to static)
 
 bar["baz"] = function () {
     alert("baz!");
-}; // another way to create an assignment ...
+}; // "associative array" style assignment of a member
 
 alert("bar.foo is: " + typeof(bar.foo));
 alert("bar.bad is: " + typeof(bar.bad));
 alert("bar.baz is: " + typeof(bar.baz));
 
-var b = new bar();
+var b = new bar(); // create an instance to access instance members
 
 alert("b.foo is: " + typeof(b.foo));
             </code>

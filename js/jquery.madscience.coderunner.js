@@ -6,9 +6,10 @@
      */
     function coderunner(source) {
         try {
-            eval(source);
+            eval(source.replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&amp;/ig,"&"));
         } catch (err) {
-            // throw away errors caused by bad eval'd code
+            console.log(source.replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&amp;/ig,"&"));
+            alert("oops!: " + err.msg);
         }
         return false;
     }
@@ -22,7 +23,7 @@
             coderunner: function (action) {
                 switch (action) {
                     case "init":
-                        return this.click(jQuery.fn.madscience.coderunner);
+                        return this.click(jQuery.fn.madscience.prototype.coderunner);
                         break;
                     default:
                         return coderunner.call(this,jQuery(this).html());

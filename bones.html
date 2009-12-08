@@ -24,16 +24,19 @@
             <li><a href="dissect1.html">Dissect I: Scope</a></li>
             <li><a href="dissect2.html">Dissect II: Methods</a></li>
             <li><a href="bones.html">Skeleton: Prototype &amp; Constructor</a></li>
+            <li><a href="stitches.html">Stitches: Put it Together</a></li>
         </ul>
     </div>
     <div class="section" id="content">
         <div class="section slide clear bones black">
             <h1>Skeleton: Prototype and Constructor, the Bones of Javascript</h1>
+            <h2>Prototype</h2>
             <p>Every object (and thus every function) has one corresponding prototype object, even if it has not been explicitly set.</p>
-            <p>By explicitly creating a prototype object, or modifying the implicitly created <code class="definition">prototype</code>, we can add members (properties and methods).</p>
+            <p>By explicitly creating a <code class="definition">prototype</code> object, or modifying the implicitly created <code class="definition">prototype</code>, we can add members (properties and methods).</p>
             <code class="example">
 window.bar = function bar () {
 };
+
 alert("implicit prototype: " + bar.prototype.toSource());
 
 bar.prototype = {
@@ -44,14 +47,105 @@ bar.prototype = {
 
 alert("explicit prototype: " + bar.prototype.toSource());
             </code>
-            <p>We can also iterate over properties in a prototype.
+        </div>
+        <div class="section slide clear slide2">
+            <h2>Constructors</h2>
+            <p>In javascript, every function is also a constructor.  Consider the following:</p>
+            <code class="example">function beaker () {
+    "fill"; // declare and discard a string
+}
+var bunsen = new beaker();
+
+alert(bunsen.constructor.toSource());
+            </code>
+        </div>
+        <div class="section slide clear slide3">
+            <h2>Devastator</h2>
+            <p>When you put all of the constructors used on a page together, the form the Gestalt method "Devastator".</p>
+        </div>
+        <div class="section slide">
+            <p>HAHAHA!</p>
+        </div>
+        <div class="section slide clear slide4">
+            <h2>Instances &amp; Instance Members</h2>
+            <p>When you create an object using a constructor, the object inherits members from it's prototype.  You can also define members - properties and methods - by assigning them with the <code class="definition">this</code> reference.</p>
+            <code class="example">function litmus(substance) {
+    this.substance = substance;
+}
+
+litmus.prototype = new Object();
+
+litmus.prototype.isBase = function () {
+    return (this.substance.pH &lt; 7);
+};
+litmus.prototype.isAcid = function () {
+    return (this.substance.pH &gt; 7);
+};
+litmus.prototype.isNeutral = function () {
+    return (this.substance.pH === 7);
+};
+
+var test = new litmus({ pH: 3 });
+
+alert(test.isNeutral());
+            </code>
+        </div>
+        <div class="section slide clear slide5">
+            <h2>Prototypal Inheritance: Every Child "Class" is an Instance</h2>
+            <p>To achieve multiple levels of inheritance, an instance of one class becomes the prototype for another.</p>
+            <code class="example">function Ladder (height) {
+    this.height = height;
+    this.step = 0;
+}
+Ladder.prototype = {
+    steps: function () {
+        return Math.floor(this.height / 1.5);
+    },
+    move: function (increment) {
+        return (this.step + increment > 0) &amp;&amp; (this.step + increment &lt; this.steps());                    
+    },
+    climb: function (direction) {
+        var increment = direction === "up" ? 1 : -1;
+        if (this.move(increment)) {
+            this.step - increment;
+        } else {
+            alert("you fell!");
+        }
+    }
+};
+
+var stepladder = new Ladder(6);
+
+function JacobsLadder (height) {
+    this.height = height;
+    
+    this.climb = function (direction) {
+        var increment = direction === "up" ? 1 : -1;
+        if (this.move(increment)) {
+            this.step = this.step + increment;
+        } else {
+            if (increment &lt; 0) {
+                alert("you went to hell!");
+            } else {
+                alert("you climbed to heaven!");
+            }
+        }
+    };
+}
+JacobsLadder.prototype = new Ladder(6);
+
+var jacob = new JacobsLadder(1);
+jacob.climb("down");
+            </code>
+        </div>
+        <div class="section slide clear slide2 black">
+            <h2>Iterating Members</h2>
+            <p>We can iterate over properties in an object or prototype in order to reuse those methods in another object.</p>
             <code class="example">
 for (var i in bar.prototype) {
     alert(i + ": " + bar.prototype[i].toSource());
 }
             </code>
-        </div>
-        <div class="section slide clear slide2 black">
             <p>Iterating over an object's members (including properties and methods like bar.foo) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
             <p>Simplified:</p>
             <code class="example">window.extend = function extend(source,target) {
@@ -67,6 +161,7 @@ for (var name in target) {
     alert(name + ": " + target[name].toSource());
 }
             </code>
+            <p><a href="stitches.html" class="next">...CONTINUE</a></p>
         </div>
     </div>
 

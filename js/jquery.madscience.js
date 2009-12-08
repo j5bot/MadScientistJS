@@ -35,7 +35,7 @@
     jQuery.fn.madscience.prototype (e.g. jQuery.fn.madscience.prototype.foo)
     which adds functions to the madscience object's prototype
     
-    using the prototype is best practice, but either is acceptable
+    using the prototype is recommended, but either is usually fine
     */
     jQuery.fn.extend(MadScience.prototype);
         
