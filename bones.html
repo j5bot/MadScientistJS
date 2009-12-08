@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Skeleton: Prototype &amp; Constructor, the Bones of Javascript</title>
+    <link rel="stylesheet" type="text/css" href="css/madscience.css" />
+	<style type="text/css">
+		.bones {
+			background-image: url("img/kit-flickr-mightyohm.1500.jpg");
+			background-position: top left;
+		}
+		.slide2 {
+			background-image: url("img/fractals-flickr-kevindooley.1500.jpg");
+			background-position: bottom right;
+		}
+	</style>
+    
+    <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
+</head>
+<body class="bones black">
+    <div class="navigation heading">
+		<h1>Javascript for the Mad Scientist:</h1>
+        <ul>
+            <li><a href="dissect1.html">Dissect I: Scope</a></li>
+            <li><a href="dissect2.html">Dissect II: Methods</a></li>
+			<li><a href="bones.html">Skeleton: Prototype &amp; Constructor</a></li>
+        </ul>
+    </div>
+	<div class="section" id="content">
+		<div class="section slide clear bones black">
+			<h1>Skeleton: Prototype and Constructor, the Bones of Javascript</h1>
+			<p>Every object (and thus every function) has one corresponding prototype object, even if it has not been explicitly set.</p>
+			<p>By explicitly creating a prototype object, or modifying the implicitly created <code class="definition">prototype</code>, we can add members (properties and methods).</p>
+			<code class="example">
+window.bar = function bar () {
+};
+alert("implicit prototype: " + bar.prototype.toSource());
+
+bar.prototype = {
+	foo: function () {
+		alert("FOO!!");
+	}
+}; // an anonymous object, which is equivalent to using Object constructor
+
+alert("explicit prototype: " + bar.prototype.toSource());
+			</code>
+			<p>We can also iterate over properties in a prototype.
+			<code class="example">
+for (var i in bar.prototype) {
+	alert(i + ": " + bar.prototype[i].toSource());
+}
+			</code>
+		</div>
+		<div class="section slide clear slide2 black">
+			<p>Iterating over an object's members (including properties and methods like bar.foo) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
+			<p>Simplified:</p>
+			<code class="example">window.extend = function extend(source,target) {
+	for (var name in source) {
+		target[name] = source[name];
+	}
+};
+
+var source = { foo: "foo!" };
+var target = { bar: function () { alert("bar!"); } };
+extend(source,target);
+for (var name in target) {
+	alert(name + ": " + target[name].toSource());
+}
+			</code>
+		</div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.madscience.js"></script>
+	<script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
+	<script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#content").madscience().presentation();
+            jQuery(".viewsource").madscience().viewsource();
+            jQuery(".example").madscience().coderunner("init");
+        });
+    </script>
+</body>
+</html>

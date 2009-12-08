@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reanimation: Synchronized Animation</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	
+	<style type="text/css">
+		body { font-family: sans-serif; }
+		.frame {
+			border: solid 1px black;
+			padding: 5px;
+		}
+		.content {
+			border: solid 1px black;
+			padding: 3px 10px;
+		}
+		.illustration {
+			padding: 0px; margin: 0px;
+		}
+		h1.abstract {
+			font-size: 15px;
+		}
+	</style>
+	<![if gte IE 7]>
+	<style type="text/css">
+		.content p {
+			display: none;
+		}
+		.frame { position: relative; }
+		.content { height: 72px; margin-left: 85px; }
+		.illustration { position: absolute; }
+		.illustration img { border-width: 0px; }
+	</style>
+	<![endif]>
+	<script type="text/javascript" src="js/jquery-1.4a1.js"></script>
+	<noscript>
+		<style type="text/css">
+			.content p {
+				display: block;
+			}
+		</style>
+	</noscript>
+</head>
+<body>
+	<div class="section item" id="reanimate">
+		<div class="article frame">
+			<p class="illustration"><a href="reanimate.700.468.jpg"><img class="thumb" src="reanimate_thumb.jpg" height="80" width="80" alt="reanimation" /></a></p>
+			
+			<div class="section content">
+				<h1 class="abstract">Synchronized Animation</h1>
+				<p>
+					This interaction shows a "full" image emerging from the bottom of the frame, the thumbnail rolling up and the the content rolling down.
+				</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		(function(jQuery) {
+			
+			function Reanimator (cohorts,options) {
+				this.options = options;
+			};
+			
+			Reanimator.prototype.reanimate = function (item) {
+				jQuery({steps:0}).animate({steps:1000},this.options);
+			};
+			/**
+			Call the jQuery default step animation function for the primary and each cohort
+			**/
+			Reanimator.prototype.step = function () {
+				
+			};
+			
+			jQuery.fn.reanimate = function (cohorts,options) {
+				var reanimator = new Reanimator(cohorts,options);
+	
+				jQuery(this).click(function () {
+					reanimator.reanimate(this);
+				});
+				
+				return this;
+			};
+						
+		})(jQuery);		
+	</script>
+</body>	
+</html>

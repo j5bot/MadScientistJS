@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Dissect</title>
+    
+	<link rel="stylesheet" type="text/css" href="css/madscience.css" />
+	<style type="text/css">
+		.dissect {
+			background-position: top left;
+			background-image: url("img/dissection-flickr-linek.1600.jpg");
+		}
+		.slide2 {
+			background-image: url("img/skull.1600.jpg");
+			background-position: bottom right;
+		}
+		.slide3 {
+			background-image: url("img/stairs-flickr-hinkelstone.1600.jpg");
+		}		
+		.slide4 {
+			background-image: url("img/stairs2-flickr-hinkelstone.1600.jpg");
+		}		
+	</style>
+	    
+    <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
+</head>
+<body class="dissect black">
+    <div class="navigation heading">
+		<h1>Javascript for the Mad Scientist:</h1>
+        <ul>
+            <li><a href="dissect1.html">Dissect I: Scope</a></li>
+            <li><a href="dissect2.html">Dissect II: Methods</a></li>
+        </ul>
+    </div>
+    <div class="section" id="content">
+        <div class="section slide clear dissect black">
+	        <h1>Dissection: </h1>
+            <p>jQuery itself is written "the jQuery way".</p>
+            <p>But what does that mean?  What can we learn by looking at the jQuery source code or the source code for a "typical" plugin?</p>
+        </div>
+        <div class="section slide">
+            <p><a class="viewsource" href="js/jQuery-1.4a1.js">SHOW SOURCE</a></p>
+            <p>The first line is:</p>
+            <code>(function(window, undefined){</code>
+            <p>The last line is:</p>
+            <code>})(window);</code>
+        </div>
+        <div class="section slide clear slide2 white">
+            <h2>Scope &amp; Closures</h2>
+            <p>Javascript has <code class="definition">function</code> scope.</p>
+            <code>
+function () {
+   var foo = "blah";
+   alert(foo); // "blah"
+}
+alert(foo); // undefined
+            </code>
+        </div>
+        <div class="section slide">
+            <p>Surrounding a function declaration in <code class="definition">( )</code> creates a function expression.</p>
+            <p>An anonymous function, which would otherwise pass away into the ether, can be captured with the <code class="definition">( )</code> to become an expression.</p>
+        </div>
+        <div class="section slide">
+            <code class="example">(function () { alert("catch me if you can!"); }); // foiled again!</code>
+            <code class="example">(function () { alert("catch me if you can!"); })(); // gotcha!</code>
+            <p>The prisoner's execution has now been ordered.  We caught him with the first set of parentheses and executed him with the second.</p>
+        </div>
+        <div class="section slide clear slide3 white">
+            <h2>Scope &amp; Closures (continued)</h2>
+            <p>Now, let's look at that again.  What does it do that couldn't be accomplished without the wrapping function?  Nothing... except... provide scope.</p>
+            <code class="example">var foo = "foo";
+alert(foo);
+(function () {
+	var foo = "bar";
+	alert(foo);
+})();
+alert(foo);
+</code>
+			<p>The anonymous function pattern by itself, used to explicitly scope variables and functions, does not create a closure.</p>
+        </div>
+        <div class="section slide">
+            <h3>Closures</h3>
+            <p>What is a closure?</p>
+            <dl>
+                <dt>closure:</dt>
+                <dd>A closure can be used to associate a function with a set of "private" variables, which persist over several invocations of the function.</dd>
+            </dl>
+            <p><a href="http://en.wikipedia.org/wiki/Closure_(computer_science)" class="next">Closures</a> are a mechanism for maintaining state and provide for explicit scoping of related variables.  When a reference is defined to something outside of the closure, we ensure that it's component parts will remain alive.</p>
+        </div>
+        <div class="section slide clear slide4 black">
+            <h3>Closures: Example</h3>
+            <code class="example">
+(function () {
+    var clicks = 0;
+
+    jQuery("h3:visible").css({
+        cursor: "pointer",
+        "color": "#eecc00"
+        }).click(function () {
+        jQuery(this).html("Click Count: " + (++clicks));
+    });
+    
+    jQuery("code:visible").css({"background-color": "#ccc"});
+})();
+            </code>
+			<p>The anonymous function attached to a <code class="definition">click</code> causes the surrounding anonymous function to become a closure, and its scope to be maintained.</p>
+        </div>
+		<div class="section slide">
+			<p>The more you program in javascript, the more you will realize the importance of the scope chain.  Practice following what "this" refers to as you move throughout the code for a jQuery method.</p>
+			<p>Look at the other variables available in the local scope and in each layer of the scope chain.</p>
+			<p><a href="dissect2.html" class="next">... CONTINUE</a></p>
+		</div>
+		
+    </div>
+
+    <script type="text/javascript" src="js/jquery.madscience.js"></script>
+	<script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
+	<script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#content").madscience().presentation();
+            jQuery(".viewsource").madscience().viewsource();
+            jQuery(".example").madscience().coderunner("init");
+        });
+    </script>
+</body>
+</html>
