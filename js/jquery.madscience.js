@@ -18,7 +18,12 @@
         no access to our child methods
         */
         madscience: function () {
-            return jQuery.extend(this,arguments.callee,arguments.callee.prototype);
+			/*
+			when we call this as a plugin, it has jquery version property
+			*/
+			if (this.jquery) {
+            	return jQuery.extend(this,new arguments.callee());
+			}
         }
     };
     
@@ -37,6 +42,6 @@
     
     using the prototype is recommended, but either is usually fine
     */
-    jQuery.fn.extend(MadScience.prototype);
+    jQuery.fn.extend(new MadScience());
         
 })(jQuery);
