@@ -18,12 +18,12 @@
         no access to our child methods
         */
         madscience: function () {
-			/*
-			when we call this as a plugin, it has jquery version property
-			*/
-			if (this.jquery) {
-            	return jQuery.extend(this,new arguments.callee());
-			}
+            /*
+            when we call this as a plugin, it has jquery version property
+            */
+            if (this.jquery) {
+                return jQuery.extend(this,new arguments.callee());
+            }
         }
     };
     
