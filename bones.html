@@ -13,6 +13,21 @@
             background-image: url("img/fractals-flickr-kevindooley.1500.jpg");
             background-position: bottom right;
         }
+		.slide3 {
+			background-image: url("img/devastator.jpg");
+			background-position: top left;
+		}
+		.slide3 #content {
+			font-size: 30px;
+		}
+		.slide4 {
+			background-image: url("img/skeleton-flickr-shazbot.1500.jpg");
+			background-position: top right;
+		}
+		.slide5 {
+			background-image: url("img/electricity.1500.jpg");
+			background-position: bottom right;
+		}
     </style>
     
     <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
@@ -31,7 +46,7 @@
         <div class="section slide clear bones black">
             <h1>Skeleton: Prototype and Constructor, the Bones of Javascript</h1>
             <h2>Prototype</h2>
-            <p>Every object (and thus every function) has one corresponding prototype object, even if it has not been explicitly set.</p>
+            <p>Every function has one corresponding prototype object, even if it has not been explicitly set.</p>
             <p>By explicitly creating a <code class="definition">prototype</code> object, or modifying the implicitly created <code class="definition">prototype</code>, we can add members (properties and methods).</p>
             <code class="example">
 window.bar = function bar () {
@@ -48,7 +63,7 @@ bar.prototype = {
 alert("explicit prototype: " + bar.prototype.toSource());
             </code>
         </div>
-        <div class="section slide clear slide2">
+        <div class="section slide clear slide2 white">
             <h2>Constructors</h2>
             <p>In javascript, every function is also a constructor.  Consider the following:</p>
             <code class="example">function beaker () {
@@ -58,15 +73,16 @@ var bunsen = new beaker();
 
 alert(bunsen.constructor.toSource());
             </code>
+			<p>Together prototypes and constructors form a very powerful system known as <code class="definition">prototypal inheritance</code>.</p>
         </div>
         <div class="section slide clear slide3">
             <h2>Devastator</h2>
-            <p>When you put all of the constructors used on a page together, the form the Gestalt method "Devastator".</p>
+            <p>When you put all of the constructors used on a page together, they form the Gestalt method "Devastator".</p>
         </div>
         <div class="section slide">
             <p>HAHAHA!</p>
         </div>
-        <div class="section slide clear slide4">
+        <div class="section slide clear slide4 black">
             <h2>Instances &amp; Instance Members</h2>
             <p>When you create an object using a constructor, the object inherits members from it's prototype.  You can also define members - properties and methods - by assigning them with the <code class="definition">this</code> reference.</p>
             <code class="example">function litmus(substance) {
@@ -90,7 +106,7 @@ var test = new litmus({ pH: 3 });
 alert(test.isNeutral());
             </code>
         </div>
-        <div class="section slide clear slide5">
+        <div class="section slide clear slide5 black">
             <h2>Prototypal Inheritance: Every Child "Class" is an Instance</h2>
             <p>To achieve multiple levels of inheritance, an instance of one class becomes the prototype for another.</p>
             <code class="example">function Ladder (height) {
@@ -136,30 +152,6 @@ JacobsLadder.prototype = new Ladder(6);
 
 var jacob = new JacobsLadder(1);
 jacob.climb("down");
-            </code>
-        </div>
-        <div class="section slide clear slide2 black">
-            <h2>Iterating Members</h2>
-            <p>We can iterate over properties in an object or prototype in order to reuse those methods in another object.</p>
-            <code class="example">
-for (var i in bar.prototype) {
-    alert(i + ": " + bar.prototype[i].toSource());
-}
-            </code>
-            <p>Iterating over an object's members (including properties and methods like bar.foo) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
-            <p>Simplified:</p>
-            <code class="example">window.extend = function extend(source,target) {
-    for (var name in source) {
-        target[name] = source[name];
-    }
-};
-
-var source = { foo: "foo!" };
-var target = { bar: function () { alert("bar!"); } };
-extend(source,target);
-for (var name in target) {
-    alert(name + ": " + target[name].toSource());
-}
             </code>
             <p><a href="stitches.html" class="next">...CONTINUE</a></p>
         </div>

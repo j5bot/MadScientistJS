@@ -29,8 +29,29 @@
     </div>
     <div class="section" id="content">
         <div class="section slide clear stitches">
-            <h1>Stitches: Using .extend(), Closures to Put it Together</h1>
-			
+            <h1>Stitches: Using .extend(), Closures to Tie Things Together</h1>
+            <h2>Iterating Members</h2>
+            <p>We can iterate over properties in an object or prototype in order to reuse those methods in another object.</p>
+            <code class="example">
+for (var i in bar.prototype) {
+    alert(i + ": " + bar.prototype[i].toSource());
+}
+            </code>
+            <p>Iterating over an object's members (including properties and methods like bar.foo) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
+            <p>Simplified:</p>
+            <code class="example">window.extend = function extend(source,target) {
+    for (var name in source) {
+        target[name] = source[name];
+    }
+};
+
+var source = { foo: "foo!" };
+var target = { bar: function () { alert("bar!"); } };
+extend(source,target);
+for (var name in target) {
+    alert(name + ": " + target[name].toSource());
+}
+            </code>
         </div>
     </div>
 
