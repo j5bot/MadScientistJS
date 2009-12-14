@@ -50,7 +50,7 @@
         <div class="section slide clear slide2 white">
             <h2>Scope &amp; Closures</h2>
             <p>Javascript has <code class="definition">function</code> scope.</p>
-            <code>
+            <code class="example">
 function () {
    var foo = "blah";
    alert(foo); // "blah"
@@ -100,6 +100,7 @@ alert(foo);
         "color": "#eecc00"
         }).click(function () {
         jQuery(this).html("Click Count: " + (++clicks));
+		return false;
     });
     
     jQuery("code:visible").css({"background-color": "#ccc"});

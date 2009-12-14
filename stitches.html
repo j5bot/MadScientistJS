@@ -10,14 +10,21 @@
             background-position: top left;
         }
         .slide2 {
-            background-image: url("img/fractals-flickr-kevindooley.1500.jpg");
-            background-position: bottom right;
+            background-image: url("img/case-flickr-steampunkfrankenstein.1500.jpg");
+            background-position: top left;
         }
+		.slide3 {
+			background-image: url("img/gargoyle.1500.jpg");
+		}
+		.slide4 {
+			background-image: url("img/photos-flickr-xenar.1500.jpg");
+			background-position: top left;
+		}
     </style>
     
     <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
 </head>
-<body class="stitches">
+<body class="stitches black">
     <div class="navigation heading">
         <h1>Javascript for the Mad Scientist:</h1>
         <ul>
@@ -28,16 +35,22 @@
         </ul>
     </div>
     <div class="section" id="content">
-        <div class="section slide clear stitches">
+        <div class="section slide clear stitches black">
             <h1>Stitches: Using .extend(), Closures to Tie Things Together</h1>
+        </div>
+        <div class="section slide clear stitches black">
             <h2>Iterating Members</h2>
             <p>We can iterate over properties in an object or prototype in order to reuse those methods in another object.</p>
-            <code class="example">
+            <code class="example">function bar() {}
+bar.prototype = {
+    foo: "foo", baz: function () { return "I am the great and powerful baz!"; }
+};
+
 for (var i in bar.prototype) {
     alert(i + ": " + bar.prototype[i].toSource());
 }
             </code>
-            <p>Iterating over an object's members (including properties and methods like bar.foo) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
+            <p>Iterating over an object's members (including properties and methods like bar.baz) is the heart of the <code class="definition">jQuery.extend</code> method.</p>
             <p>Simplified:</p>
             <code class="example">window.extend = function extend(source,target) {
     for (var name in source) {
@@ -53,6 +66,78 @@ for (var name in target) {
 }
             </code>
         </div>
+        <div class="section slide clear slide2 black">
+            <h2>Plugging In with jQuery.fn.extend()</h2>
+            <p>So you love jQuery, but you wish that you didn't have to chain together four calls to get the html() content from the first and last children of an element.</p>
+            <p>Time to write a plugin!</p>
+        </div>
+        <div class="section slide">
+            <code class="example">(function ($) {
+        
+    $.fn.extend({
+        bookends: function () {
+            return this.children(":first").html() + this.children(":last").html();
+        }
+    });
+
+})(jQuery);
+
+alert(jQuery("div.slide2").bookends());
+            </code>
+            <p>That's <code class="definition">jQuery.fn.extend()</code> which extends jQuery to provide for methods to be called on a jQuery collection.</p>
+        </div>
+        <div class="section slide clear slide3 black">
+            <h2>Setting Options with jQuery.extend()</h2>
+            <p>When your plugin is likely to take the same parameters / options over and over in real life usage, you want to allow people to set and forget.</p>
+            <p>That's one place where jQuery.extend() and a closured variable can be used.</p>
+            <code class="example">(function (jQuery) {
+
+    var opts = {
+        brain: "genius",
+        muscles: "strong"
+    };
+
+    // get the matching "parts" from the given
+    function getBody (options) {
+        var options = jQuery.extend(opts,options);
+        return jQuery(".bodies[brain="+options.brain+"][muscles="+options.muscles+"]",this);
+    }
+
+    // override the default options
+    function setOptions (options) {
+        opts = jQuery.extend(opts,options);
+    }
+
+    jQuery.extend({ gravedig: setOptions });
+
+    jQuery.fn.extend({ gravedig: getBody });
+
+})(jQuery);
+
+alert(jQuery(".slide3").gravedig().html());
+			</code>
+			<code class="example">jQuery.gravedig({ brain: "abnormal" });
+
+alert(jQuery(".slide3").gravedig().html());
+            </code>
+            <p class="bodies" brain="abnormal" muscles="weak">Body: Abnormal, weak</p>
+            <p class="bodies" brain="abnormal" muscles="strong">Body: Abnormal, strong</p>
+            <p class="bodies" brain="genius" muscles="strong">Body: Genius, strong</p>
+        </div>
+		<div class="section slide clear slide4 black">
+			<h2>More Material</h2>
+			<p>There's a lot of great material out there on advanced javascript.  There are typically many ways that you can accomplish the same results using different combinations of anonymous objects, constructors, prototypes, anonymous functions, etc.</p>
+			<p>If you want to learn more, I suggest looking at material written by the following people (to start):</p>
+			<ul>
+				<li><a href="http://crockford.com/">Douglas Crockford</a> </li>
+				<li><a href="http://ejohn.org/">John Resig</a> (creator of jQuery)</li>
+				<li><a href="http://dean.edwards.name/">Dean Edwards</a></li>
+				<li><a href="http://stevesouders.com/">Steve Souders</a> (performance)</li>
+				<li><a href="http://remysharp.com/">Remy Sharp</a></li>
+				<li><a href="http://www.phpied.com/">Stoyan Stefanov</a></li>
+			</ul>
+			<p><a href="credits.html" class="next">PHOTO CREDITS</a></p>
+		</div>
     </div>
 
     <script type="text/javascript" src="js/jquery.madscience.js"></script>

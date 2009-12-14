@@ -8,7 +8,7 @@
         try {
             eval(source.replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&amp;/ig,"&"));
         } catch (err) {
-            console.log(source.replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&amp;/ig,"&"));
+            console.log(source.replace(/\&lt;/ig,"<").replace(/\&gt;/ig,">").replace(/\&amp;/ig,"\&"));
             alert("oops!: " + err.msg);
         }
         return false;
