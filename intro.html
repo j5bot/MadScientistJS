@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Dissection I: Scope &amp; Closures</title>
+    
+    <link rel="stylesheet" type="text/css" href="css/madscience.css" />
+    <style type="text/css">
+        .intro {
+            background-position: top left;
+            background-image: url("img/book.1500.jpg");
+        }
+		.intro #content {
+			font-size: 30px;
+		}
+    </style>
+        
+    <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
+</head>
+<body class="intro">
+    <div class="navigation heading">
+        <h1>Javascript for the Mad Scientist:</h1>
+        <ul>
+            <li><a href="dissect1.html">Dissect I: Scope</a></li>
+            <li><a href="dissect2.html">Dissect II: Methods</a></li>
+            <li><a href="bones.html">Skeleton: Prototype &amp; Constructor</a></li>
+            <li><a href="stitches.html">Stitches: Put it Together</a></li>
+        </ul>
+    </div>
+    <div class="section" id="content">
+        <div class="section slide clear intro">
+			<h1>Javascript for the Mad Scientist</h1>
+			<h2>advanced javascript for jQuery</h2>
+			<h3>by Jonathan 'J5' Cook</h3>
+            <p><a href="dissect1.html" class="next">... CONTINUE</a></p>
+        </div>
+        
+    </div>
+
+    <script type="text/javascript" src="js/jquery.madscience.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.viewsource.js"></script>
+    <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#content").madscience().presentation();
+            jQuery(".viewsource").madscience().viewsource();
+            jQuery(".example").madscience().coderunner("init");
+        });
+    </script>
+</body>
+</html>
