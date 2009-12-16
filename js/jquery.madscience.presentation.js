@@ -20,7 +20,7 @@
     }
     
     function showNextSlide(e) {
-        if (e.target.className.indexOf("next") == -1) {
+        if (!e.target.href) {
             // this is the click element
             var t = jQuery(this);
             var next = jQuery("*:hidden:first",t);
