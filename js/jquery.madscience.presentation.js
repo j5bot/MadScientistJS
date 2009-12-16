@@ -37,9 +37,10 @@
         }
     }
         
-    jQuery.fn.madscience.prototype.presentation = function () { 
+    jQuery.fn.madscience.prototype.presentation = function (callback) { 
         this.children().hide();
         this.show().click(showNextSlide);
+		if (callback) { callback(); }
         return this;
     };
     

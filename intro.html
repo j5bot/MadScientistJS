@@ -14,13 +14,14 @@
 			font-size: 30px;
 		}
 		.next {
-			margin-top: 30px;
+			display: block;
+			margin-top: 80px;
 		}
     </style>
         
     <script type="text/javascript" src="js/jquery-1.4a1.js"></script>
 </head>
-<body class="intro">
+<body class="intro whitest">
     <div class="navigation heading">
         <h1>Javascript for the Mad Scientist:</h1>
         <ul>
@@ -31,15 +32,21 @@
         </ul>
     </div>
     <div class="section" id="content">
-        <div class="section slide clear intro">
+        <div class="section slide clear intro whitest">
 			<h1>Javascript for the Mad Scientist</h1>
 			<h2>advanced javascript for jQuery</h2>
 			<h3>by Jonathan 'J5' Cook</h3>
 			<p><a href="http://twitter.com/j5bot">@j5bot</a>, <a href="http://j5bot.blogspot.com/">blog</a></p>
             <p><a href="dissect1.html" class="next">START</a></p>
         </div>
-        
     </div>
+ 	<div class="navigation footer">
+		<ul>
+			<li><a href="intro.html">Intro</a></li>
+			<li><a href="credits.html">Photo Credits</a></li>
+		</ul>
+		<p>Left click each page to show slides.  Example code is often runnable by left-clicking the code block.</p>
+	</div>
 
     <script type="text/javascript" src="js/jquery.madscience.js"></script>
     <script type="text/javascript" src="js/jquery.madscience.presentation.js"></script>
@@ -47,7 +54,7 @@
     <script type="text/javascript" src="js/jquery.madscience.coderunner.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            jQuery("#content").madscience().presentation();
+            jQuery("#content").madscience().presentation(function() { jQuery(".footer").show(); jQuery(".intro.slide").show(); });
             jQuery(".viewsource").madscience().viewsource();
             jQuery(".example").madscience().coderunner("init");
         });

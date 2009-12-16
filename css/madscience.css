@@ -43,9 +43,13 @@ a {
 .viewsource {
     display: block;
 }
-code { display: block; white-space: pre; padding: 10px 5px; }
+code {
+	display: block;
+	white-space: pre;
+	padding: 10px 5px;
+}
 code.definition { display: inline; padding: 0px; }
-code.example { cursor: pointer; }
+code.example { cursor: pointer; margin-right: 30%; }
 
 .navigation.heading h1 {
     display: inline-block;
@@ -54,16 +58,23 @@ code.example { cursor: pointer; }
     margin: 0px;
     font-size: 1em;
 }
-.navigation.heading ul {
+.navigation ul {
     display: inline-block;
     margin: 10px 0px;
     padding: 0px;
 }
-.navigation.heading li {
+.navigation li {
     display: inline-block;
     padding-right: 3px;
     margin-right: 10px;
 }
-.navigation.heading, .navigation.heading a {
+.navigation, .navigation a {
     color: #fff;
+}
+.navigation.footer {
+	text-align: right;
+}
+
+.whitest .navigation, .whitest .navigation a {
+	color: #000;
 }
